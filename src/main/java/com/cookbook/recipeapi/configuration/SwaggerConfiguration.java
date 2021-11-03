@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.cookbook.recipeapi.configuration;
 
 import org.springframework.context.annotation.Bean;
