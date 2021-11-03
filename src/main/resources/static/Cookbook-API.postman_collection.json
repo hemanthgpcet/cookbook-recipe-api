@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "57500edf-0893-48e4-8372-ed4b5d37ac2f",
+		"name": "Cookbook-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"token\", jsonData.jwt);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"hemanth\",\r\n    \"password\": \"pass123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rayalaseema chicken gravy\",\r\n    \"numberOfPeople\":5,\r\n    \"rating\":4,\r\n    \"isVegetarian\": false,\r\n    \"ingredientsList\": [\r\n        {\r\n            \"name\": \"Chicken\"\r\n        },\r\n        {\r\n            \"name\": \"onion\"\r\n        },\r\n        {\r\n            \"name\": \"Chilli\"\r\n        },\r\n        {\r\n            \"name\": \"Ginger garlic\"\r\n        },\r\n        {\r\n            \"name\": \"salt\"\r\n        }\r\n    ],\r\n    \"cookingInstructions\": \"Fry onion then add chilli,ginger garlic and add marinate chicken\",\r\n    \"mastercheftips\":\"Cook on low flame\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cookbook/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get item",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cookbook/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get item by customer rating",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cookbook/rating=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						"rating=4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get item by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cookbook/id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						"id=1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get item by numberoopeople",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cookbook/numberofpeople=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						"numberofpeople=5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rayalaseema chicken gravy\",\r\n    \"numberOfPeople\": 2,\r\n    \"rating\":5,\r\n    \"isVegetarian\": false,\r\n    \"ingredientsList\": [\r\n        {\r\n            \"name\": \"Chicken\"\r\n        },\r\n        {\r\n            \"name\": \"onion\"\r\n        },\r\n        {\r\n            \"name\": \"Chilli\"\r\n        },\r\n        {\r\n            \"name\": \"Ginger garlic\"\r\n        },\r\n        {\r\n            \"name\": \"salt\"\r\n        }\r\n    ],\r\n    \"cookingInstructions\": \"Fry onion,chilli,ginger garlic and add marinate chicken\",\r\n    \"mastercheftips\":\"Cook on low flame,tips by hemanth\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cookbook/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/cookbook/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cookbook",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
